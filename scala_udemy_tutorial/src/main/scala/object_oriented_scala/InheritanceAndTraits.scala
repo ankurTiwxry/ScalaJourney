@@ -4,11 +4,13 @@ package object_oriented_scala
 // More intricate inheritance models using TRAITS
 object InheritanceAndTraits extends App {
 
-  class Animal {
+  abstract class Animal {
     // private def eat = println("nomnom")
     // the private method cannot be called by an extension of the class
     // protected will give access to this and subclasses
-    def eat = println("nomnom")
+
+    val creatureType: String
+    def eat: Unit
   }
 
 //  class Cat extends Animal
@@ -16,20 +18,20 @@ object InheritanceAndTraits extends App {
 //  cat.eat
 
   // CONSTRUCTORS
-  class Person(name: String, age: Int)
+//  class Person(name: String, age: Int)
   // ERROR: as JVM tries to call the CTOR of the parent first
   // class Adult(name: String, age: Int, idCard: String) extends Person
-  class Adult(name: String, age: Int, idCard: String) extends Person(name, age)
+//  class Adult(name: String, age: Int, idCard: String) extends Person(name, age)
 
   // OVERRIDING: both function definitions and fields
-  // Fields can be directly overridden in the CTRO itself
+  // Fields can be directly overridden in the CTOR itself
   class Dog extends Animal {
-    super.eat
-    override def eat = println("Ik ben Potato")
+    override val creatureType: String = "Canine"
+    def eat: Unit = println("Ik ben Potato")
   }
 
-  val dog = new Dog
-  dog.eat
+//  val dog = new Dog
+//  dog.eat
 
   // TYPE substitution : POLYMORPHISM
   // OverRIDING  : supplying a different implementation in derived classes
@@ -40,5 +42,7 @@ object InheritanceAndTraits extends App {
   // preventing overrides
   // Keyword : FINAL : before class, functions def, field
   // Seal the class: prevent extension in other files: but works in this file : Used for exhaustive class lists
+
+
 
 }
